@@ -58,7 +58,7 @@ public class MainForAssembler {
             registerService.regist(req);
             System.out.println("enrolled");
         } catch (DuplicateMemberException e) {
-            System.out.println("It already exit the Eamail.\n");
+            System.out.println("It already exit the Email.\n");
         }
     }
     private static void processChangeCommand(String[] args){
