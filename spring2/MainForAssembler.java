@@ -77,4 +77,13 @@ public class MainForAssembler {
         }
     }
 
+    private static void printHelp(){
+        System.out.println();
+        System.out.println("Wrong command");
+        System.out.println("Command manual:");
+        System.out.println("new Email Name Password passwordConfirm");
+        System.out.println("change Email CurrentPassword NewPassword");
+        System.out.println();
+    }
+
 }
