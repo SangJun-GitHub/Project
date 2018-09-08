@@ -2,9 +2,9 @@ package spring2;
 
 //dependency error
 
-import spring.ChangePasswordService;
-import spring.MemberDao;
-import spring.MemberRegisterService;
+import spring2.ChangePasswordService;
+import spring2.MemberDao;
+import spring2.MemberRegisterService;
 
 public class Assembler {
 
@@ -14,7 +14,7 @@ public class Assembler {
 
     public Assembler(){
         memberDao = new MemberDao();
-        registerService = new MemberRegisterService();
+        registerService = new MemberRegisterService(memberDao);
         passwordService = new ChangePasswordService();
         passwordService.setMemberDao(memberDao);
     }
@@ -22,4 +22,5 @@ public class Assembler {
     public MemberDao getMemberDao(){ return memberDao; }
     public MemberRegisterService getMemberRegisterService(){ return registerService; }
     public ChangePasswordService getChangePasswordService(){ return passwordService; }
+
 }
