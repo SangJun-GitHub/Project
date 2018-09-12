@@ -15,6 +15,7 @@ import spring2.MemberNotFoundException;
 import spring2.MemberRegisterService;
 import spring2.RegisterRequest;
 import spring2.WrongIdPasswordException;
+import spring2.MemberListPrinter;
 
 public class MainForAssembler {
 
@@ -37,6 +38,9 @@ public class MainForAssembler {
                 continue;
             } else if(command.startsWith("change")){
                 processChangeCommand(command.split(" "));
+                continue;
+            } else if(command.equals("list")){
+                processListCommand();
                 continue;
             }
             printHelp();
@@ -85,6 +89,11 @@ public class MainForAssembler {
         }catch(WrongIdPasswordException e){
             System.out.println("Not matched Email and password\n");
         }
+    }
+
+    private static void processListCommand(){
+        MemberListPrinter listPrinter = ctx.getBean("listPrinter", MemberListPrinter.class);
+        listPrinter.printAll();
     }
 
     private static void printHelp(){

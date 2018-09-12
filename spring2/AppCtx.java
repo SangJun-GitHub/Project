@@ -32,4 +32,14 @@ public class AppCtx {
         PasswordService.setMemberDao(memberDao());
         return PasswordService;
     }
+
+    @Bean
+    public MemberPrinter memberPrinter(){
+        return new MemberPrinter();
+    }
+
+    @Bean
+    public MemberListPrinter listPrinter(){
+        return new MemberListPrinter(memberDao(), memberPrinter());
+    }
 }
