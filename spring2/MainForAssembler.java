@@ -4,7 +4,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import spring2.Assembler;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import spring2.AppCtx;
+//import spring2.Assembler;
 import spring2.ChangePasswordService;
 import spring2.DuplicateMemberException;
 import spring2.MemberNotFoundException;
@@ -14,7 +18,12 @@ import spring2.WrongIdPasswordException;
 
 public class MainForAssembler {
 
+    private static ApplicationContext ctx = null;
+
     public static void main(String[] args) throws IOException {
+
+        ctx = new AnnotationConfigApplicationContext(AppCtx.class);
+
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         while(true){
             System.out.println("Enter the command : ");
@@ -34,16 +43,15 @@ public class MainForAssembler {
         }
     }
 
-    private static Assembler assembler = new Assembler();
+    //private static Assembler assembler = new Assembler();
 
     private static void processNewCommand(String[] args) {
         if (args.length != 5) {
             printHelp();
             return;
         }
-
-
-        MemberRegisterService registerService = assembler.getMemberRegisterService();
+        //MemberRegisterService registerService = assembler.getMemberRegisterService();
+        MemberRegisterService registerService = ctx.getBean("memberRegisterService", MemberRegisterService.class);
         RegisterRequest req = new RegisterRequest();
         req.setEmail(args[1]);
         req.setName(args[2]);
@@ -61,12 +69,14 @@ public class MainForAssembler {
             System.out.println("It already exit the Email.\n");
         }
     }
+
     private static void processChangeCommand(String[] args){
         if(args.length !=4){
             printHelp();
             return;
         }
-        ChangePasswordService changePasswordService = assembler.getChangePasswordService();
+        //ChangePasswordService changePasswordService = assembler.getChangePasswordService();
+        ChangePasswordService changePasswordService = ctx.getBean("changePasswordService", ChangePasswordService.class);
         try{
             changePasswordService.changePassword(args[1],args[2],args[3]);
             System.out.println("password was changed.\n");
