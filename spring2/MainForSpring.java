@@ -17,7 +17,7 @@ import spring2.RegisterRequest;
 import spring2.WrongIdPasswordException;
 import spring2.MemberListPrinter;
 
-public class MainForAssembler {
+public class MainForSpring {
 
     private static ApplicationContext ctx = null;
 
@@ -41,6 +41,9 @@ public class MainForAssembler {
                 continue;
             } else if(command.equals("list")){
                 processListCommand();
+                continue;
+            } else if(command.startsWith("info ")){
+                processInfoCommand(command.split(" "));
                 continue;
             }
             printHelp();
@@ -94,6 +97,15 @@ public class MainForAssembler {
     private static void processListCommand(){
         MemberListPrinter listPrinter = ctx.getBean("listPrinter", MemberListPrinter.class);
         listPrinter.printAll();
+    }
+
+    private static void processInfoCommand(String[] arg){
+        if(arg.length != 2){
+            printHelp();
+            return;
+        }
+        MemberInfoPrinter memberInfoPrinter = ctx.getBean("memberInfoPrinter", MemberInfoPrinter.class);
+        memberInfoPrinter.printMemberInfo(arg[1]);
     }
 
     private static void printHelp(){

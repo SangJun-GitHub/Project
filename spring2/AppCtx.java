@@ -42,4 +42,12 @@ public class AppCtx {
     public MemberListPrinter listPrinter(){
         return new MemberListPrinter(memberDao(), memberPrinter());
     }
+
+    @Bean
+    public MemberInfoPrinter memberInfoPrinter(){
+        MemberInfoPrinter memberInfoPrinter = new MemberInfoPrinter();
+        memberInfoPrinter.setMemberDao(memberDao());
+        memberInfoPrinter.setMemberPrinter(memberPrinter());
+        return memberInfoPrinter;
+    }
 }
