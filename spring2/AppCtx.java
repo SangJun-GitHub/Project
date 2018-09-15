@@ -50,4 +50,12 @@ public class AppCtx {
         memberInfoPrinter.setMemberPrinter(memberPrinter());
         return memberInfoPrinter;
     }
+
+    @Bean
+    public VersionPrinter versionPrinter(){
+        VersionPrinter versionPrinter = new VersionPrinter();
+        versionPrinter.setMajorVersion(1);
+        versionPrinter.setMinorVersion(3);
+        return versionPrinter;
+    }
 }
