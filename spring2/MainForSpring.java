@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import spring2.AppCtx;
+//import spring2.AppCtx;
 //import spring2.Assembler;
 import spring2.ChangePasswordService;
 import spring2.DuplicateMemberException;
@@ -18,6 +18,8 @@ import spring2.WrongIdPasswordException;
 import spring2.MemberListPrinter;
 import spring2.MemberInfoPrinter;
 import spring2.VersionPrinter;
+import spring2.AppConf1;
+import spring2.AppConf2;
 
 public class MainForSpring {
 
@@ -25,7 +27,7 @@ public class MainForSpring {
 
     public static void main(String[] args) throws IOException {
 
-        ctx = new AnnotationConfigApplicationContext(AppCtx.class);
+        ctx = new AnnotationConfigApplicationContext(AppConf1.class, AppConf2.class);
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         while(true){
@@ -124,6 +126,8 @@ public class MainForSpring {
         System.out.println("Command manual:");
         System.out.println("new Email Name Password passwordConfirm");
         System.out.println("change Email CurrentPassword NewPassword");
+        System.out.println("info Email");
+        System.out.println("version");
         System.out.println();
     }
 
