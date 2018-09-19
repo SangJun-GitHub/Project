@@ -12,21 +12,22 @@ import java.util.Optional;
  * Github : http://github.com/SangJun-GitHub
  */
 public class MemberPrinter {
-    @Autowired
-    private Optional<DateTimeFormatter> formatOpt;
+//    @Autowired
+//    private Optional<DateTimeFormatter> formatOpt;
+
     private DateTimeFormatter dateTimeFormatter;
 
-    public  void print(Member member){
-        this.dateTimeFormatter = formatOpt.orElse(null);
-        if(dateTimeFormatter == null){
-            System.out.printf("Member Information: ID=%d, Email=%s, Name=%s, Date of enrollment=%tF\n",
-                    member.getId(), member.getEmail(), member.getName(), member.getRegisterDateTime());
-        }else{
-            System.out.printf("Member Information: ID=%d, Email=%s, Name=%s, Date of enrollment=%tF\n",
-                    member.getId(), member.getEmail(), member.getName(),
-                    dateTimeFormatter.format(member.getRegisterDateTime()));
-        }
-    }
+//    public  void print(Member member){
+//        this.dateTimeFormatter = formatOpt.orElse(null);
+//        if(dateTimeFormatter == null){
+//            System.out.printf("Member Information: ID=%d, Email=%s, Name=%s, Date of enrollment=%tF\n",
+//                    member.getId(), member.getEmail(), member.getName(), member.getRegisterDateTime());
+//        }else{
+//            System.out.printf("Member Information: ID=%d, Email=%s, Name=%s, Date of enrollment=%tF\n",
+//                    member.getId(), member.getEmail(), member.getName(),
+//                    dateTimeFormatter.format(member.getRegisterDateTime()));
+//        }
+//    }
 
 //    @Autowired(required = false)
 //    public void setDateTimeFormatter(DateTimeFormatter dateTimeFormatter){
@@ -38,13 +39,33 @@ public class MemberPrinter {
 //        this.dateTimeFormatter = dateTimeFormatter;
 //    }
 
-    @Autowired
-    public void setDateTimeFormatter(Optional<DateTimeFormatter> formatOpt){
-        this.formatOpt = formatOpt;
-        if(formatOpt.isPresent()) {
-            this.dateTimeFormatter = formatOpt.get();
+//    @Autowired
+//    public void setDateTimeFormatter(Optional<DateTimeFormatter> formatOpt){
+//        this.formatOpt = formatOpt;
+//        if(formatOpt.isPresent()) {
+//            this.dateTimeFormatter = formatOpt.get();
+//        }else{
+//            this.dateTimeFormatter = null;
+//        }
+//    }
+
+    public MemberPrinter(){
+        dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy:MM:dd");
+    }
+
+    public void print(Member member){
+        if(dateTimeFormatter == null){
+            System.out.printf("Member Information: ID=%d, Email=%s, Name=%s, Date of enrollment=%tF\n",
+                    member.getId(), member.getEmail(), member.getName(), member.getRegisterDateTime());
         }else{
-            this.dateTimeFormatter = null;
+            System.out.printf("Member Information: ID=%d, Email=%s, Name=%s, Date of enrollment=%s\n",
+                    member.getId(), member.getEmail(), member.getName(),
+                    dateTimeFormatter.format(member.getRegisterDateTime()));
         }
+    }
+
+    @Autowired(required = false)
+    public void setDateTimeFormatter(DateTimeFormatter dateTimeFormatter) {
+        this.dateTimeFormatter = dateTimeFormatter;
     }
 }
