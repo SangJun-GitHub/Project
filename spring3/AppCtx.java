@@ -6,6 +6,7 @@ package spring3;//package spring2;
  * Github : http://github.com/SangJun-GitHub
  */
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -33,8 +34,15 @@ public class AppCtx {
     }
 
     @Bean
-    public MemberPrinter memberPrinter(){
+    @Qualifier("printer")
+    public MemberPrinter memberPrinter1(){
         return new MemberPrinter();
+    }
+
+    @Bean
+    @Qualifier("summaryPrinter")
+    public MemberSuummaryPrinter memberPrinter2(){
+        return new MemberSuummaryPrinter();
     }
 
     @Bean
