@@ -1,13 +1,12 @@
 package spring3;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 /**
  * Created by bobsang89@gmail.com on 2018-09-15
  * Project: blog
  * Github : http://github.com/SangJun-GitHub
  */
-
-import org.springframework.beans.factory.annotation.Autowired;
-
 public class MemberInfoPrinter {
 
     private MemberDao memberDao;
@@ -19,7 +18,7 @@ public class MemberInfoPrinter {
             System.out.println("No data");
             return;
         }
-        memberPrinter.memberPrint(member);
+        memberPrinter.print(member);
         System.out.println();
     }
 

@@ -1,4 +1,4 @@
-package spring3;
+package spring3;//package spring2;
 
 /**
  * Created by bobsang89@gmail.com on 2018-09-11
@@ -6,15 +6,12 @@ package spring3;
  * Github : http://github.com/SangJun-GitHub
  */
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import spring3.ChangePasswordService;
 import spring3.MemberDao;
 import spring3.MemberRegisterService;
-import spring3.MemberPrinter;
 
 @Configuration
 public class AppCtx {
@@ -31,25 +28,12 @@ public class AppCtx {
 
     @Bean
     public ChangePasswordService changePasswordService(){
-//        ChangePasswordService PasswordService = new ChangePasswordService();
-//        PasswordService.setMemberDao(memberDao());  //DI
+
         return new ChangePasswordService();
     }
 
-//    @Bean
-//    public MemberPrinter memberPrinter(){
-//        return new MemberPrinter();
-//    }
-
     @Bean
-    @Qualifier("printer")
-    public MemberPrinter memberPrinter1(){
-        return new MemberPrinter();
-    }
-
-    @Bean
-    @Qualifier("mpriner") // limiter
-    public MemberPrinter memberPrinter2(){
+    public MemberPrinter memberPrinter(){
         return new MemberPrinter();
     }
 
@@ -60,9 +44,6 @@ public class AppCtx {
 
     @Bean
     public MemberInfoPrinter memberInfoPrinter(){
-//        MemberInfoPrinter memberInfoPrinter = new MemberInfoPrinter();
-//        memberInfoPrinter.setMemberDao(memberDao());
-//        memberInfoPrinter.setMemberPrinter(memberPrinter());
         return new MemberInfoPrinter();
     }
 

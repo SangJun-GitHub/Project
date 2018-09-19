@@ -7,7 +7,6 @@ package spring3;
  */
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.util.Collection;
 
@@ -21,7 +20,7 @@ public class MemberListPrinter {
 
     public void printAll(){
         Collection<Member> members = memberDao.selecAll();
-        members.forEach(member -> printer. memberPrint(member));
+        members.forEach(member -> printer.print(member));
     }
 
     @Autowired
@@ -30,9 +29,7 @@ public class MemberListPrinter {
     }
 
     @Autowired
-    @Qualifier("printer")
-    public void setMemberPrinter(MemberPrinter printer){
-        this.printer = printer;
+    public void setPrinter(MemberPrinter print){
+        this.printer = print;
     }
-
 }

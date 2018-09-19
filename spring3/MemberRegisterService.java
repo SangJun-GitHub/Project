@@ -8,9 +8,8 @@ public class MemberRegisterService {
 
     @Autowired
     private MemberDao memberDao;
-    //Dependent object is injected through constructor
-    public MemberRegisterService(){
 
+    public MemberRegisterService(){
     }
 
     public long regist(RegisterRequest req){
@@ -19,7 +18,7 @@ public class MemberRegisterService {
         if(member != null){
             throw new DuplicateMemberException("Duplicated Email" + req.getEmail());
         }
-        Member newMember =new Member(req.getEmail(), req.getPassword(), req.getName(), LocalDateTime.now());
+        Member newMember = new Member(req.getEmail(), req.getPassword(), req.getName(), LocalDateTime.now());
         memberDao.insert(newMember);
         return newMember.getId();
     }

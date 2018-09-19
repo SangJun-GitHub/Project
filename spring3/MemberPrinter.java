@@ -6,7 +6,7 @@ package spring3;
  * Github : http://github.com/SangJun-GitHub
  */
 public class MemberPrinter {
-    public  void memberPrint(Member member){
+    public  void print(Member member){
         System.out.println(
                 "Member Information: ID = "+ member.getId() +" Email = " + member.getEmail() +
                         " Name = " + member.getName() + " Date of enrollment = " + member.getRegisterDateTime());
